@@ -1,0 +1,25 @@
+{
+  "name": "MicroPython ESP32 Dev Container",
+  "build": {
+    "dockerfile": "../Dockerfile"
+  },
+  "runArgs": [
+    // --- HARDWARE ACCESS ---
+    // Uncomment the ONE line that matches your host operating system.
+    // For macOS:
+    "--device-cgroup-rule=c 188:* rmw",
+    "--privileged"
+    // For Linux (ensure your user is in the 'dialout' group on the host):
+    //"--device=/dev/ttyUSB0"
+    // For Windows: No argument needed here. Follow the USBIPD-WIN setup guide first.
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "josverl.micropython-ide-vscode",
+        "ms-python.black-formatter"
+      ]
+    }
+  }
+}
