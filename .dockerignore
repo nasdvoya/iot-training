@@ -1,0 +1,16 @@
+# Ignore the Git repository itself
+.git
+.gitignore
+
+# Ignore the Dockerfile and devcontainer config, they are not needed inside the image
+Dockerfile
+.devcontainer/
+.dockerignore
+
+# Ignore local IDE settings
+.vscode/
+
+# Ignore Python cache and virtual environments
+__pycache__/
+venv/
+*.env
