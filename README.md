@@ -97,3 +97,6 @@ cp secrets.py /pyboard/
 exit
 
 ```
+### Packages
+
+[micropython library]
