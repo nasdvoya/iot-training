@@ -1,47 +1,5 @@
 ## Hardware setup for docker development container
 
-Before launching the dev container, you must perform a one-time setup on your host machine to grant the container access to the USB serial ports.
-
-### Linux
-
-You need to add your user account to the `dialout` group, which has permission to access serial devices.
-
-1.  Run the following command in your terminal:
-    ```bash
-    sudo usermod -aG dialout $USER
-    ```
-2.  **Important:** You must **log out and log back in** for this change to take effect.
-3.  After logging back in, you can uncomment the Linux line in the `.devcontainer/devcontainer.json` file.
-
-### Windows
-
-On Windows, you must use the `usbipd-win` tool to forward your ESP32 from the Windows host to the WSL 2 environment where Docker runs.
-
-1.  Open **PowerShell as an Administrator**.
-2.  Install `usbipd-win` (if you haven't already):
-
-    ```powershell
-    winget install --interactive --exact dorssel.usbipd-win
-    ```
-
-3.  Plug in your ESP32 and run the following commands in your Admin PowerShell:
-
-    ```powershell
-    # List devices to find the BUSID of your ESP32
-    usbipd wsl list
-
-    # Attach the device to WSL, replacing <BUSID> with the ID from the list
-    usbipd wsl attach --busid <BUSID>
-    ```
-
-    **Note:** This `attach` command must be run each time you plug in the device or restart your computer. No changes are needed in the `devcontainer.json` file.
-
-### macOS
-
-No special prerequisite steps are required on macOS. Docker Desktop is already configured to handle device mapping.
-
-1.  Simply uncomment the macOS line in the `.devcontainer/devcontainer.json` file.
-
 ### Development environment
 
 [Install uv](https://github.com/astral-sh/uv)
@@ -97,6 +55,30 @@ cp secrets.py /pyboard/
 exit
 
 ```
+
 ### Packages
 
-[micropython library]
+[micropython-lib](https://github.com/micropython/micropython-lib/tree/master)
+[Package index](https://micropython.org/pi/v2/index.json)
+
+#### python-stdlib
+
+Standard library modules, included in the MicroPython firmware.
+
+> json, time, os, struct, sys, random, asyncio, array, io
+
+#### python-ecosys
+
+"Simplified" version of common PyPi packages.
+
+> aiohttp, uasyncio, urequests
+
+#### micropython
+
+Micropython specific packages.
+
+> lora, bluetooth, espflash, mip
+
+#### unix-ffi
+
+Used to interact with host OS libraries or FFI (Foreign Function Interface)
