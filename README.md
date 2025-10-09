@@ -6,6 +6,24 @@
 [esptool](https://github.com/espressif/esptool)
 [just](https://github.com/casey/just)
 
+### Command workflow
+
+```bash
+just --list
+```
+
+### In repl
+
+Soft reboot and reloads `boot.py` and `main.py`:
+
+> Ctrl+D
+
+```bash
+rshell -p <port> repl
+>>> import machine
+>>> machine.reset()
+```
+
 ### Code
 
 ```bash
